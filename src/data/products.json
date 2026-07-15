@@ -1,28 +1,37 @@
 {
-  "id": "wyze-cam-v4",
-  "category": "cameras",
-  "title": "Wyze Cam v4",
-  "description": "2.5K QHD indoor/outdoor smart camera.",
-  "image": "/images/products/wyze-cam-v4.png",
-  "price": 25.98,
-  "compareAtPrice": 35.98,
-  "badge": "Save 22%",
-  "learnMore": "#",
-  "variants": [
+  "cameras": [
     {
-      "id": "black",
-      "label": "Black",
-      "thumbnail": "/images/colors/black.png"
-    },
-    {
-      "id": "white",
-      "label": "White",
-      "thumbnail": "/images/colors/white.png"
-    },
-    {
-      "id": "grey",
-      "label": "Grey",
-      "thumbnail": "/images/colors/grey.png"
+      "id": "wyze-cam-v4",
+      "category": "cameras",
+      "title": "Wyze Cam v4",
+      "description": "The clearest Wyze Cam ever made.",
+      "image": "/images/products/Wyze_Cam_V4.png",
+      "price": 25.98,
+      "compareAtPrice": 35.98,
+      "badge": "Save 22%",
+      "learnMore": "#",
+      "variants": [
+        {
+          "id": "black",
+          "label": "Black",
+          "thumbnail": "/images/products/Wyze_Cam_V4.png"
+        },
+        {
+          "id": "white",
+          "label": "White",
+          "thumbnail": "/images/products/Wyze_Cam_V4.png"
+        },
+        {
+          "id": "grey",
+          "label": "Grey",
+          "thumbnail": "/images/products/Wyze_Cam_V4.png"
+        }
+      ]
     }
-  ]
+  ],
+  "plans": [],
+
+  "sensors": [],
+
+  "accessories": []
 }

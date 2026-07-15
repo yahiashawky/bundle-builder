@@ -7,7 +7,7 @@ import VariantSelector from "./VariantSelector";
 
 function ProductCard({ product }) {
   return (
-    <article className="rounded-2xl border border-gray-200 bg-white p-6">
+    <article className="rounded-2xl border border-gray-200 bg-white p-6 transition-all">
       <ProductBadge badge={product.badge} />
 
       <ProductImage image={product.image} title={product.title} />
@@ -19,7 +19,9 @@ function ProductCard({ product }) {
       />
 
       {product.variants?.length > 0 && (
-        <VariantSelector variants={product.variants} />
+        <div className="mt-5">
+          <VariantSelector variants={product.variants} />
+        </div>
       )}
 
       <div className="mt-6 flex items-center justify-between">
