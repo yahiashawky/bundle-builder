@@ -3,14 +3,14 @@ import ReviewPanel from "../review/ReviewPanel";
 
 function BundleBuilder() {
   return (
-    <section className="mx-auto grid max-w-7xl grid-cols-12 gap-8 p-8">
+    <section className="flex flex-col gap-3.25 p-24 w-360 max-h-[1606] ">
       {/* Left Side */}
-      <div className="col-span-8">
+      <div className="">
         <Accordion />
       </div>
 
       {/* Right Side */}
-      <div className="col-span-4">
+      <div className="">
         <ReviewPanel />
       </div>
     </section>

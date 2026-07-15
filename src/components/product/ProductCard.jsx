@@ -1,5 +1,6 @@
 import useBundleStore from "../../store/bundleStore";
 import { getVariantQuantity } from "../../store/selectors";
+
 import ProductBadge from "./ProductBadge";
 import ProductImage from "./ProductImage";
 import ProductInfo from "./ProductInfo";
@@ -11,6 +12,7 @@ function ProductCard({ product }) {
   const increment = useBundleStore((state) => state.increment);
   const decrement = useBundleStore((state) => state.decrement);
   const selectVariant = useBundleStore((state) => state.selectVariant);
+
   const selectedVariant = useBundleStore(
     (state) => state.selectedVariants[product.id] || product.variants?.[0]?.id,
   );
@@ -20,30 +22,45 @@ function ProductCard({ product }) {
   );
 
   return (
-    <article className="rounded-2xl border border-gray-200 bg-white p-6 transition-all">
+    <article
+      className="
+        w-[224.6px]
+        h-[331.1px]
+        rounded-[10px]
+        border
+        border-[#D9D9D9]
+        bg-white
+        p-2.75
+        flex
+        flex-col
+        gap-3.25
+        transition-all
+      "
+    >
+      {/* Badge */}
       <ProductBadge badge={product.badge} />
 
+      {/* Image */}
       <ProductImage image={product.image} title={product.title} />
 
+      {/* Title + Description + Learn More */}
       <ProductInfo
         title={product.title}
         description={product.description}
         learnMore={product.learnMore}
       />
 
+      {/* Variants */}
       {product.variants?.length > 0 && (
-        <div className="mt-5">
-          <VariantSelector
-            variants={product.variants}
-            selectedVariant={selectedVariant}
-            onSelectVariant={(variantId) =>
-              selectVariant(product.id, variantId)
-            }
-          />
-        </div>
+        <VariantSelector
+          variants={product.variants}
+          selectedVariant={selectedVariant}
+          onSelectVariant={(variantId) => selectVariant(product.id, variantId)}
+        />
       )}
 
-      <div className="mt-6 flex items-center justify-between">
+      {/* Bottom */}
+      <div className="mt-auto flex h-7 items-center justify-between">
         <QuantityStepper
           value={quantity}
           onIncrement={() => increment(product.id, selectedVariant)}

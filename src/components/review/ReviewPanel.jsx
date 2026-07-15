@@ -11,9 +11,9 @@ function ReviewPanel() {
       top-8
       rounded-2xl
       border
-      bg-white
       p-6
       shadow-sm
+      bg-[#edf4ff]
     "
     >
       <h2 className="mb-6 text-2xl font-semibold">Your Security System</h2>

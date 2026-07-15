@@ -1,14 +1,15 @@
 import { formatCurrency } from "../../utils/helper";
+
 function ProductPrice({ price, compareAtPrice }) {
   return (
-    <div className="flex flex-col items-end">
+    <div className="flex w-28 items-center justify-end gap-0.75">
       {compareAtPrice && (
-        <span className="text-sm text-gray-400 line-through">
+        <span className="text-[16px] leading-none tracking-[0.6px] text-[#98A2B3] line-through">
           {formatCurrency(compareAtPrice)}
         </span>
       )}
 
-      <span className="text-xl font-bold text-gray-900">
+      <span className="text-[16px] leading-none tracking-[0.6px] text-[#101828]">
         {formatCurrency(price)}
       </span>
     </div>

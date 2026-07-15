@@ -1,12 +1,16 @@
 import AccordionHeader from "./AccordionHeader";
 import AccordionContent from "./AccordionContent";
 
-function AccordionItem({ step }) {
+function AccordionItem({ step, isOpen, setOpenStep }) {
   return (
-    <div className="rounded-2xl border bg-white">
-      <AccordionHeader step={step} />
+    <div className="rounded-xl border">
+      <AccordionHeader
+        step={step}
+        isOpen={isOpen}
+        onClick={() => setOpenStep(step.id)}
+      />
 
-      <AccordionContent products={step.products} />
+      {isOpen && <AccordionContent products={step.products} step={step} />}
     </div>
   );
 }
