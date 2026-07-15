@@ -1,5 +1,5 @@
 import data from "../../data/products.json";
-import ProductCard from "../Product/ProductCard";
+import ProductCard from "../product/ProductCard";
 
 function BuilderSection() {
   return (

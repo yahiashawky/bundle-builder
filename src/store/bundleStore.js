@@ -1,54 +1,66 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-const useBundleStore = create((set, get) => ({
-  activeStep: 1,
+const useBundleStore = create(
+  persist(
+    (set) => ({
+      activeStep: 1,
 
-  selectedVariant: {},
+      selectedVariants: {},
 
-  quantities: {},
-   setActiveStep: (step) =>
-    set({
-      activeStep: step,
-    }),
+      cart: {},
 
-    setVariant: (productId, variantId) =>
-    set((state) => ({
-        selectedVariant: {
-            ...state.selectedVariant,
+      setActiveStep: (step) =>
+        set({
+          activeStep: step,
+        }),
 
+      selectVariant: (productId, variantId) =>
+        set((state) => ({
+          selectedVariants: {
+            ...state.selectedVariants,
             [productId]: variantId,
-        },
-    })),
+          },
+        })),
 
-    increaseQuantity: (productId, variantId) =>
-  set((state) => ({
-    quantities: {
-      ...state.quantities,
+      increment: (productId, variantId) =>
+        set((state) => ({
+          cart: {
+            ...state.cart,
 
-      [productId]: {
-        ...state.quantities[productId],
+            [productId]: {
+              variants: {
+                ...state.cart[productId]?.variants,
 
-        [variantId]:
-          (state.quantities[productId]?.[variantId] || 0) + 1,
-      },
-    },
-  })),
+                [variantId]:
+                  (state.cart[productId]?.variants?.[variantId] || 0) + 1,
+              },
+            },
+          },
+        })),
 
-  decreaseQuantity: (productId, variantId) =>
-  set((state) => ({
-    quantities: {
-      ...state.quantities,
+      decrement: (productId, variantId) =>
+        set((state) => ({
+          cart: {
+            ...state.cart,
 
-      [productId]: {
-        ...state.quantities[productId],
+            [productId]: {
+              variants: {
+                ...state.cart[productId]?.variants,
 
-        [variantId]: Math.max(
-          0,
-          (state.quantities[productId]?.[variantId] || 0) - 1
-        ),
-      },
-    },
-  })),
-}));
+                [variantId]: Math.max(
+                  0,
+                  (state.cart[productId]?.variants?.[variantId] || 0) - 1
+                ),
+              },
+            },
+          },
+        })),
+    }),
+    {
+      name: "bundle-builder",
+    }
+  )
+);
 
 export default useBundleStore;

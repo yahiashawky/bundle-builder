@@ -1,10 +1,20 @@
-import BuilderSection from "./components/Builder/BuilderSection";
+import useBundleStore from "./store/bundleStore";
 
 function App() {
+  const cart = useBundleStore((state) => state.cart);
+  const increment = useBundleStore((state) => state.increment);
+
   return (
-    <main className="mx-auto max-w-7xl p-8">
-      <BuilderSection />
-    </main>
+    <div className="p-10">
+      <button
+        onClick={() => increment("camera", "black")}
+        className="rounded bg-black px-4 py-2 text-white"
+      >
+        Add
+      </button>
+
+      <pre>{JSON.stringify(cart, null, 2)}</pre>
+    </div>
   );
 }
 
