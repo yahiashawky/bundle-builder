@@ -1,13 +1,11 @@
 import ProductCard from "../product/ProductCard";
 
-function AccordionContent({ step }) {
+function AccordionContent({ products }) {
   return (
-    <div className="space-y-6 border-t border-gray-100 p-6">
-      {step.products.map((product) => (
+    <div className="grid grid-cols-5 gap-4 p-6">
+      {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
-
-      <button className="rounded-xl bg-black px-6 py-3 text-white">Next</button>
     </div>
   );
 }
