@@ -1,5 +1,5 @@
 import useBundleStore from "../../store/bundleStore";
-import { getSelectedVariant, getVariantQuantity } from "../../store/selectors";
+import { getVariantQuantity } from "../../store/selectors";
 import ProductBadge from "./ProductBadge";
 import ProductImage from "./ProductImage";
 import ProductInfo from "./ProductInfo";
