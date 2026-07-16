@@ -10,7 +10,13 @@ function AccordionItem({ step, isOpen, setOpenStep }) {
         onClick={() => setOpenStep(step.id)}
       />
 
-      {isOpen && <AccordionContent products={step.products} step={step} />}
+      {isOpen && (
+        <AccordionContent
+          products={step.products}
+          step={step}
+          setOpenStep={setOpenStep}
+        />
+      )}
     </div>
   );
 }

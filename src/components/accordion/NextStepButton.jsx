@@ -1,7 +1,21 @@
-function NextStepButton() {
+import steps from "../../data/steps";
+import useBundleStore from "../../store/bundleStore";
+import { hasSelectedProducts } from "../../store/selectors";
+
+function NextStepButton({ step, setOpenStep }) {
+  const nextStep = steps.find((s) => s.id === step.id + 1);
+  const canContinue = useBundleStore((state) =>
+    hasSelectedProducts(state, step.products),
+  );
+
+  if (!nextStep) return null;
+  if (!canContinue) return null;
+
   return (
-    <div className="flex justify-center pt-4">
+    <div className="flex justify-center pt-6">
       <button
+        type="button"
+        onClick={() => setOpenStep(nextStep.id)}
         className="
           rounded-md
           border
@@ -16,7 +30,7 @@ function NextStepButton() {
           hover:text-white
         "
       >
-        Next: Choose your sensors
+        Next: {nextStep.title}
       </button>
     </div>
   );

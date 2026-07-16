@@ -19,3 +19,15 @@ export const getVariantQuantity = (
     );
   }).length;
 }
+
+export function hasSelectedProducts(state, products) {
+  return products.some((product) => {
+    const item = state.cart[product.id];
+
+    if (!item) return false;
+
+    return Object.values(item.variants || {}).some(
+      (quantity) => quantity > 0
+    );
+  });
+}
