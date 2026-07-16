@@ -3,7 +3,7 @@ import AccordionContent from "./AccordionContent";
 
 function AccordionItem({ step, isOpen, setOpenStep }) {
   return (
-    <div className="rounded-xl border">
+    <div className="overflow-hidden rounded-xl border border-[#E4E7EC] bg-white">
       <AccordionHeader
         step={step}
         isOpen={isOpen}

@@ -21,21 +21,17 @@ function ProductCard({ product }) {
     getVariantQuantity(state, product.id, selectedVariant),
   );
 
+  const isSelected = useBundleStore((state) => {
+    const item = state.cart[product.id];
+
+    if (!item) return false;
+
+    return Object.values(item.variants || {}).some((quantity) => quantity > 0);
+  });
+
   return (
     <article
-      className="
-        w-[224.6px]
-        h-[331.1px]
-        rounded-[10px]
-        border
-        border-[#D9D9D9]
-        bg-white
-        p-2.75
-        flex
-        flex-col
-        gap-3.25
-        transition-all
-      "
+      className={`w-[224.6px] h-[331.1px] rounded-[10px]  ${isSelected ? "border-2 border-[#5B4CF0]"  : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all `}
     >
       {/* Badge */}
       <ProductBadge badge={product.badge} />
