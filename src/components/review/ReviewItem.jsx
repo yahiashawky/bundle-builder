@@ -1,40 +1,44 @@
-import { Minus, Plus } from "lucide-react";
+import useBundleStore from "../../store/bundleStore";
+import ProductPrice from "../product/ProductPrice";
+import QuantityStepper from "../product/QuantityStepper";
 
 function ReviewItem({ item }) {
+  const increment = useBundleStore((state) => state.increment);
+  const decrement = useBundleStore((state) => state.decrement);
+
   return (
-    <div className="flex items-center justify-between py-3">
+    <div className="flex items-center justify-between py-4">
       {/* Left */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <img
           src={item.image}
           alt={item.title}
-          className="h-10 w-10 rounded bg-white object-contain"
+          className="h-14 w-14 rounded-md border border-[#E4E7EC] bg-white object-contain p-1"
         />
 
-        <p className="text-[16px] text-[#111827]">{item.title}</p>
+        <div className="space-y-1">
+          <h4 className="text-[16px] font-semibold text-[#101828]">
+            {item.title}
+          </h4>
+
+          <p className="text-[14px] text-[#667085]">{item.variant?.label}</p>
+        </div>
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-5">
-        <div className="flex items-center gap-2">
-          <button>
-            <Minus size={14} />
-          </button>
+      <div className="flex items-center gap-6">
+        <QuantityStepper
+          value={item.quantity}
+          size="compact"
+          onIncrement={() => increment(item.productId, item.variant.id)}
+          onDecrement={() => decrement(item.productId, item.variant.id)}
+        />
 
-          <span>{item.quantity}</span>
-
-          <button>
-            <Plus size={14} />
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <span className="line-through text-[#98A2B3]">
-            ${item.compareAtPrice}
-          </span>
-
-          <span className="font-semibold text-[#5B4CF0]">${item.price}</span>
-        </div>
+        <ProductPrice
+          variant="review"
+          price={item.total}
+          compareAtPrice={item.totalCompare}
+        />
       </div>
     </div>
   );
