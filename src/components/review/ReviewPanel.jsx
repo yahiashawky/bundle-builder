@@ -4,7 +4,7 @@ import ReviewPricing from "./ReviewPricing";
 import ReviewCheckout from "./ReviewCheckout";
 import productsData from "../../data/products.json";
 import useBundleStore from "../../store/bundleStore";
-import { getReviewData } from "../../store/selectors";
+import { getReviewData, getBundleTotals } from "../../store/selectors";
 import { useMemo } from "react";
 
 function ReviewPanel() {
@@ -14,6 +14,8 @@ function ReviewPanel() {
     () => getReviewData({ cart }, productsData),
     [cart],
   );
+
+  const totals = useMemo(() => getBundleTotals(reviewData), [reviewData]);
   return (
     <section
       className="
@@ -42,7 +44,7 @@ function ReviewPanel() {
         {/* Right */}
 
         <div className="flex flex-col">
-          <ReviewPricing />
+          <ReviewPricing totals={totals} />
 
           <ReviewCheckout />
         </div>

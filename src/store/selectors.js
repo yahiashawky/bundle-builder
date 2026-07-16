@@ -81,3 +81,27 @@ export function getReviewData(state, productsData) {
     plans: getSelectedItems(state, productsData.plans),
   };
 }
+
+export function getBundleTotals(reviewData) {
+  const allItems = [
+    ...reviewData.cameras,
+    ...reviewData.sensors,
+    ...reviewData.accessories,
+    ...reviewData.plans,
+  ];
+
+  return allItems.reduce(
+    (totals, item) => ({
+      subtotal: totals.subtotal + item.total,
+      compareSubtotal: totals.compareSubtotal + item.totalCompare,
+      savings: totals.savings + (item.totalCompare - item.total),
+      itemsCount: totals.itemsCount + item.quantity,
+    }),
+    {
+      subtotal: 0,
+      compareSubtotal: 0,
+      savings: 0,
+      itemsCount: 0,
+    }
+  );
+}
