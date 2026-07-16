@@ -1,32 +1,53 @@
-import EmptyReview from "./EmptyReview";
-import OrderSummary from "./OrderSummary";
-import ReviewGroup from "./ReviewGroup";
-import ReviewItem from "./ReviewItem";
+import ReviewHeader from "./ReviewHeader";
+import ReviewSection from "./ReviewSection";
+import ReviewPricing from "./ReviewPricing";
+import ReviewCheckout from "./ReviewCheckout";
+import productsData from "../../data/products.json";
+import useBundleStore from "../../store/bundleStore";
+import { getReviewData } from "../../store/selectors";
+import { useMemo } from "react";
 
 function ReviewPanel() {
+  const cart = useBundleStore((state) => state.cart);
+
+  const reviewData = useMemo(
+    () => getReviewData({ cart }, productsData),
+    [cart],
+  );
   return (
-    <aside
+    <section
       className="
-      sticky
-      top-8
-      rounded-2xl
-      border
-      p-6
-      shadow-sm
-      bg-[#edf4ff]
-    "
+        mt-6
+        rounded-[10px]
+        bg-[#EDF4FF]
+        px-8
+        py-8
+      "
     >
-      <h2 className="mb-6 text-2xl font-semibold">Your Security System</h2>
+      <div className="grid grid-cols-[1fr_520px] gap-10">
+        {/* Left */}
+        <div className="space-y-6">
+          <ReviewHeader />
 
-      {/* مؤقتًا */}
-      <ReviewGroup title="Cameras">
-        <ReviewItem image="" title="" variant="" price="" />
-      </ReviewGroup>
+          <ReviewSection title="CAMERAS" items={reviewData.cameras} />
 
-      <div className="my-6" />
+          <ReviewSection title="SENSORS" items={reviewData.sensors} />
 
-      <OrderSummary />
-    </aside>
+          <ReviewSection title="ACCESSORIES" items={reviewData.accessories} />
+
+          <ReviewSection title="PLAN" items={reviewData.plans} />
+          <ReviewSection title="SHIPPING" items={[]} />
+        </div>
+
+        {/* Right */}
+
+        <div className="flex flex-col">
+          <ReviewPricing />
+
+          <ReviewCheckout />
+        </div>
+      </div>
+    </section>
   );
 }
 

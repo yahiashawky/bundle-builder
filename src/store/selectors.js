@@ -31,3 +31,53 @@ export function hasSelectedProducts(state, products) {
     );
   });
 }
+
+export function getSelectedItems(state, products) {
+  return products.flatMap((product) => {
+    const item = state.cart[product.id];
+
+    if (!item) return [];
+
+    return Object.entries(item.variants || {})
+      .filter(([, quantity]) => quantity > 0)
+      .map(([variantId, quantity]) => {
+        const variant = product.variants?.find(
+          (v) => v.id === variantId,
+        );
+
+        return {
+          id: `${product.id}-${variantId}`,
+
+          productId: product.id,
+
+          title: product.title,
+
+          image: product.image,
+
+          variant,
+
+          quantity,
+
+          price: product.price,
+
+          compareAtPrice: product.compareAtPrice,
+
+          total: quantity * product.price,
+
+          totalCompare: quantity * product.compareAtPrice,
+        };
+      });
+  });
+}
+
+export function getReviewData(state, productsData) {
+  return {
+    cameras: getSelectedItems(state, productsData.cameras),
+
+    sensors: getSelectedItems(state, productsData.sensors),
+
+    accessories: getSelectedItems(state, productsData.accessories),
+
+    plans: getSelectedItems(state, productsData.plans),
+  };
+}

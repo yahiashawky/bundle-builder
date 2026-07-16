@@ -1,16 +1,12 @@
 import Accordion from "../accordion/Accordion";
+import ReviewPanel from "../review/ReviewPanel";
 
 function BundleBuilder() {
   return (
-    <section
-      className="
-        pt-[49.32px]
-        pb-15.5
-        pl-26.25
-        pr-30.5
-      "
-    >
+    <section className="px-26.25 pt-12.25 pb-15.5">
       <Accordion />
+
+      <ReviewPanel />
     </section>
   );
 }
