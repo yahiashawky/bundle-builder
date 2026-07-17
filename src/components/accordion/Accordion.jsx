@@ -7,14 +7,16 @@ function Accordion() {
 
   return (
     <div className="space-y-4">
-      {steps.map((step) => (
-        <AccordionItem
-          key={step.id}
-          step={step}
-          isOpen={openStep === step.id}
-          setOpenStep={setOpenStep}
-        />
-      ))}
+      {steps
+        .filter((step) => !step.hidden)
+        .map((step) => (
+          <AccordionItem
+            key={step.id}
+            step={step}
+            isOpen={openStep === step.id}
+            setOpenStep={setOpenStep}
+          />
+        ))}
     </div>
   );
 }

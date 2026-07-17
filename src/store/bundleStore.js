@@ -6,9 +6,45 @@ const useBundleStore = create(
     (set) => ({
       activeStep: 1,
 
-      selectedVariants: {},
+      selectedVariants: {
+        "wyze-sense-motion-sensor": "default",
+        "wyze-sense-hub": "default",
+        "wyze-microsd-card-256": "default",
+        "cam-unlimited": "default",
+        "fast-shipping": "default",
+      },
 
-      cart: {},
+      cart: {
+        "wyze-sense-motion-sensor": {
+          variants: {
+            default: 2,
+          },
+        },
+
+        "wyze-sense-hub": {
+          variants: {
+            default: 1,
+          },
+        },
+
+        "wyze-microsd-card-256": {
+          variants: {
+            default: 2,
+          },
+        },
+
+        "cam-unlimited": {
+          variants: {
+            default: 1,
+          },
+        },
+
+        "fast-shipping": {
+          variants: {
+            default: 1,
+          },
+        },
+      },
 
       setActiveStep: (step) =>
         set({
@@ -50,7 +86,7 @@ const useBundleStore = create(
 
                 [variantId]: Math.max(
                   0,
-                  (state.cart[productId]?.variants?.[variantId] || 0) - 1
+                  (state.cart[productId]?.variants?.[variantId] || 0) - 1,
                 ),
               },
             },
@@ -59,8 +95,8 @@ const useBundleStore = create(
     }),
     {
       name: "bundle-builder",
-    }
-  )
+    },
+  ),
 );
 
 export default useBundleStore;

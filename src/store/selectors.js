@@ -1,22 +1,18 @@
+import productsData from "../data/products.json";
+
 export const getSelectedVariant = (state, productId) =>
   state.selectedVariants[productId];
 
-export const getVariantQuantity = (
-  state,
-  productId,
-  variantId
-) =>
+export const getVariantQuantity = (state, productId, variantId) =>
   state.cart[productId]?.variants?.[variantId] || 0;
 
-  export function getSelectedProducts(state, products) {
+export function getSelectedProducts(state, products) {
   return products.filter((product) => {
     const item = state.cart[product.id];
 
     if (!item) return false;
 
-    return Object.values(item.variants || {}).some(
-      (quantity) => quantity > 0,
-    );
+    return Object.values(item.variants || {}).some((quantity) => quantity > 0);
   }).length;
 }
 
@@ -26,9 +22,7 @@ export function hasSelectedProducts(state, products) {
 
     if (!item) return false;
 
-    return Object.values(item.variants || {}).some(
-      (quantity) => quantity > 0
-    );
+    return Object.values(item.variants || {}).some((quantity) => quantity > 0);
   });
 }
 
@@ -38,47 +32,57 @@ export function getSelectedItems(state, products) {
 
     if (!item) return [];
 
+    const hasVariants = product.variants?.length > 0;
+
+    if (!hasVariants) {
+      const quantity = item.variants?.default || 0;
+
+      if (quantity === 0) return [];
+
+      return [
+        {
+          id: product.id,
+          productId: product.id,
+          title: product.title,
+          image: product.image,
+          variant: null,
+          quantity,
+          price: product.price,
+          compareAtPrice: product.compareAtPrice,
+          total: quantity * product.price,
+          totalCompare: quantity * (product.compareAtPrice || 0),
+        },
+      ];
+    }
+
     return Object.entries(item.variants || {})
       .filter(([, quantity]) => quantity > 0)
       .map(([variantId, quantity]) => {
-        const variant = product.variants?.find(
-          (v) => v.id === variantId,
-        );
+        const variant = product.variants.find((v) => v.id === variantId);
 
         return {
           id: `${product.id}-${variantId}`,
-
           productId: product.id,
-
           title: product.title,
-
           image: product.image,
-
           variant,
-
           quantity,
-
           price: product.price,
-
           compareAtPrice: product.compareAtPrice,
-
           total: quantity * product.price,
-
-          totalCompare: quantity * product.compareAtPrice,
+          totalCompare: quantity * (product.compareAtPrice || 0),
         };
       });
   });
 }
 
-export function getReviewData(state, productsData) {
+export function getReviewData(state) {
   return {
     cameras: getSelectedItems(state, productsData.cameras),
-
     sensors: getSelectedItems(state, productsData.sensors),
-
     accessories: getSelectedItems(state, productsData.accessories),
-
     plans: getSelectedItems(state, productsData.plans),
+    shipping: getSelectedItems(state, productsData.shipping),
   };
 }
 
@@ -102,6 +106,6 @@ export function getBundleTotals(reviewData) {
       compareSubtotal: 0,
       savings: 0,
       itemsCount: 0,
-    }
+    },
   );
 }

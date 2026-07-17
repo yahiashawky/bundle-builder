@@ -2,7 +2,6 @@ import ReviewHeader from "./ReviewHeader";
 import ReviewSection from "./ReviewSection";
 import ReviewPricing from "./ReviewPricing";
 import ReviewCheckout from "./ReviewCheckout";
-import productsData from "../../data/products.json";
 import useBundleStore from "../../store/bundleStore";
 import { getReviewData, getBundleTotals } from "../../store/selectors";
 import { useMemo } from "react";
@@ -10,10 +9,7 @@ import { useMemo } from "react";
 function ReviewPanel() {
   const cart = useBundleStore((state) => state.cart);
 
-  const reviewData = useMemo(
-    () => getReviewData({ cart }, productsData),
-    [cart],
-  );
+  const reviewData = useMemo(() => getReviewData({ cart }), [cart]);
 
   const totals = useMemo(() => getBundleTotals(reviewData), [reviewData]);
   return (
@@ -38,7 +34,7 @@ function ReviewPanel() {
           <ReviewSection title="ACCESSORIES" items={reviewData.accessories} />
 
           <ReviewSection title="PLAN" items={reviewData.plans} />
-          <ReviewSection title="SHIPPING" items={[]} />
+          <ReviewSection title="SHIPPING" items={reviewData.shipping} />
         </div>
 
         {/* Right */}

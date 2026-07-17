@@ -110,9 +110,74 @@
       ]
     }
   ],
-  "plans": [],
+  "plans": [
+    {
+      "id": "cam-unlimited",
+      "category": "plans",
+      "title": "Cam Unlimited",
+      "description": "",
+      "image": "/images/products/Layer_plan.png",
+      "price": 9.99,
+      "compareAtPrice": 12.99,
+      "badge": "",
+      "learnMore": "#",
+      "variants": []
+    }
+  ],
 
-  "sensors": [],
+  "sensors": [
+    {
+      "id": "wyze-sense-motion-sensor",
+      "category": "sensors",
+      "title": "Wyze Sense Motion Sensor",
+      "description": "",
+      "image": "/images/products/Wyze_Sense_Motion_Sensor.png",
+      "price": 59.98,
+      "compareAtPrice": null,
+      "badge": "",
+      "learnMore": "#",
+      "variants": []
+    },
+    {
+      "id": "wyze-sense-hub",
+      "category": "sensors",
+      "title": "Wyze Sense Hub (Required)",
+      "description": "",
+      "image": "/images/products/wyze_sense_hub.png",
+      "price": 0,
+      "compareAtPrice": 29.92,
+      "badge": "",
+      "learnMore": "#",
+      "variants": []
+    }
+  ],
 
-  "accessories": []
+  "accessories": [
+    {
+      "id": "wyze-microsd-card-256",
+      "category": "accessories",
+      "title": "Wyze MicroSD Card (256GB)",
+      "description": "",
+      "image": "/images/products/wyze_microsd_card_256.png",
+      "price": 41.96,
+      "compareAtPrice": null,
+      "badge": "",
+      "learnMore": "#",
+      "variants": []
+    }
+  ],
+  "shipping": [
+    {
+      "id": "fast-shipping",
+      "category": "shipping",
+      "title": "Fast Shipping",
+      "description": "",
+      "image": "/images/products/fast_shipping.png",
+      "price": 0,
+      "compareAtPrice": 5.99,
+      "badge": "",
+      "learnMore": "#",
+      "variants": []
+    }
+  ]
 }

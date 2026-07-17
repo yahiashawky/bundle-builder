@@ -4,9 +4,18 @@ import { hasSelectedProducts } from "../../store/selectors";
 
 function NextStepButton({ step, setOpenStep }) {
   const nextStep = steps.find((s) => s.id === step.id + 1);
-  const canContinue = useBundleStore((state) =>
-    hasSelectedProducts(state, step.products),
-  );
+  const canContinue = useBundleStore((state) => {
+    switch (step.type) {
+      case "multi":
+        return hasSelectedProducts(state, step.products);
+
+      case "single":
+        return hasSelectedProducts(state, step.products);
+
+      default:
+        return true;
+    }
+  });
 
   if (!nextStep) return null;
   if (!canContinue) return null;
