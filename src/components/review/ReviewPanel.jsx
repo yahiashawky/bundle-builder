@@ -10,6 +10,7 @@ function ReviewPanel() {
   const cart = useBundleStore((state) => state.cart);
 
   const reviewData = useMemo(() => getReviewData({ cart }), [cart]);
+  console.log(reviewData)
 
   const totals = useMemo(() => getBundleTotals(reviewData), [reviewData]);
   return (

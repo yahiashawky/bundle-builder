@@ -38,6 +38,11 @@ export function getSelectedItems(state, products) {
       const quantity = item.variants?.default || 0;
 
       if (quantity === 0) return [];
+      console.log({
+        product: product.title,
+        quantity,
+        item,
+      });
 
       return [
         {

@@ -14,7 +14,10 @@ function ProductCard({ product }) {
   const selectVariant = useBundleStore((state) => state.selectVariant);
 
   const selectedVariant = useBundleStore(
-    (state) => state.selectedVariants[product.id] || product.variants?.[0]?.id,
+    (state) =>
+      state.selectedVariants[product.id] ??
+      product.variants?.[0]?.id ??
+      "default",
   );
 
   const quantity = useBundleStore((state) =>
@@ -31,7 +34,7 @@ function ProductCard({ product }) {
 
   return (
     <article
-      className={`w-[224.6px] h-[331.1px] rounded-[10px]  ${isSelected ? "border-2 border-[#5B4CF0]"  : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all `}
+      className={`w-[224.6px] h-[331.1px] rounded-[10px]  ${isSelected ? "border-2 border-[#5B4CF0]" : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all `}
     >
       {/* Badge */}
       <ProductBadge badge={product.badge} />

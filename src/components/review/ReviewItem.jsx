@@ -5,6 +5,7 @@ import QuantityStepper from "../product/QuantityStepper";
 function ReviewItem({ item }) {
   const increment = useBundleStore((state) => state.increment);
   const decrement = useBundleStore((state) => state.decrement);
+  const variantId = item.variant?.id ?? "default";
 
   return (
     <div className="flex items-center justify-between py-4">
@@ -21,7 +22,9 @@ function ReviewItem({ item }) {
             {item.title}
           </h4>
 
-          <p className="text-[14px] text-[#667085]">{item.variant?.label}</p>
+          {item.variant && (
+            <p className="text-[14px] text-[#667085]">{item.variant.label}</p>
+          )}
         </div>
       </div>
 
@@ -30,8 +33,8 @@ function ReviewItem({ item }) {
         <QuantityStepper
           value={item.quantity}
           size="compact"
-          onIncrement={() => increment(item.productId, item.variant.id)}
-          onDecrement={() => decrement(item.productId, item.variant.id)}
+          onIncrement={() => increment(item.productId, variantId)}
+          onDecrement={() => decrement(item.productId, variantId)}
         />
 
         <ProductPrice

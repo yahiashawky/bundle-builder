@@ -59,7 +59,10 @@ const useBundleStore = create(
           },
         })),
 
-      increment: (productId, variantId) =>
+      increment: (productId, variantId) =>{
+        console.log(productId, variantId);
+      
+        
         set((state) => ({
           cart: {
             ...state.cart,
@@ -73,7 +76,7 @@ const useBundleStore = create(
               },
             },
           },
-        })),
+        }))},
 
       decrement: (productId, variantId) =>
         set((state) => ({
