@@ -5,7 +5,7 @@ function ReviewGuarantee() {
         <img
           src="/images/products/guarantee_badge.png"
           alt="Guarantee"
-          className="h-28 w-28"
+          className="h-[131px] w-[131px]"
         />
 
         <div className="pt-2">
