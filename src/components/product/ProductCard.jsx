@@ -74,6 +74,7 @@ function ProductCard({ product }) {
         <ProductPrice
           price={product.price}
           compareAtPrice={product.compareAtPrice}
+          suffix={product.category === "plans" ? "/mo" : ""}
         />
       </div>
     </article>

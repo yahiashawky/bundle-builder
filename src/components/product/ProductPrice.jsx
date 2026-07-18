@@ -1,6 +1,6 @@
 import { formatCurrency } from "../../utils/helper";
 
-function ProductPrice({ price, compareAtPrice, variant = "card" }) {
+function ProductPrice({ price, compareAtPrice, variant = "card", suffix = "" }) {
   const isReview = variant === "review";
   console.log({
     price,
@@ -23,7 +23,7 @@ function ProductPrice({ price, compareAtPrice, variant = "card" }) {
               : "text-[16px] text-[#98A2B3]"
           }`}
         >
-          {formatCurrency(compareAtPrice)}
+          {formatCurrency(compareAtPrice)} {suffix}
         </span>
       )}
 
@@ -32,7 +32,7 @@ function ProductPrice({ price, compareAtPrice, variant = "card" }) {
           isReview ? "text-[16px] text-[#6941C6]" : "text-[16px] text-[#5B4CF0]"
         }`}
       >
-        {isFree ? "FREE" : formatCurrency(price)}
+        {isFree ? "FREE" : formatCurrency(price)} {suffix}
       </span>
     </div>
   );
