@@ -1,23 +1,28 @@
+import toast from "react-hot-toast";
+import useBundleStore from "../../store/bundleStore";
+
 function ReviewCheckout() {
+  const saveBundle = useBundleStore((state) => state.saveBundle);
+
+  function handleSave() {
+    saveBundle();
+    toast.success("System saved successfully!");
+  }
+
   return (
-    <div>
-      <button
-        className="
-          h-12
-          w-full
-          rounded-md
-          bg-[#5B4CF0]
-          text-white
-          font-semibold
-        "
-      >
+    <>
+      <button className="h-12 w-full rounded-md bg-[#5B4CF0] font-semibold text-white">
         Checkout
       </button>
 
-      <p className="mt-4 text-center text-[14px] text-[#667085] underline">
+      <button
+        type="button"
+        onClick={handleSave}
+        className="mt-4 w-full text-center text-[14px] text-[#667085] underline"
+      >
         Save my system for later
-      </p>
-    </div>
+      </button>
+    </>
   );
 }
 
