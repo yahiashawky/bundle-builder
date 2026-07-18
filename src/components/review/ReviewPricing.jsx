@@ -2,23 +2,24 @@ import { formatCurrency } from "../../utils/helper";
 
 function ReviewPricing({ totals }) {
   return (
-    <div className="mb-6">
-      <div className="flex justify-between items-start">
-        <div className="h-[120px] w-[120px] rounded-full bg-[#5B4CF0]" />
-
-        <div className="text-right">
-          <p className="text-[18px] text-[#98A2B3] line-through">
+    <div className="mb-5">
+      <div className="flex items-center justify-between gap-3">
+        <div className="rounded-[3px] bg-[#5B4CF0] px-4 py-1.5">
+          <h4 className="text-[#ffff] text-[16px] font-normal tracking-[-5%]">as low as $19.19/mo</h4>
+        </div>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-[22px] text-[#6F7882] line-through tracking-[0.25px] font-normal">
             {formatCurrency(totals.compareSubtotal)}
-          </p>
+          </span>
 
-          <h2 className="text-[42px] font-bold text-[#5B4CF0]">
+          <span className="text-[28px] font-normal text-[#4E2FD2] tracking-[-0.13%]">
             {formatCurrency(totals.subtotal)}
-          </h2>
+          </span>
         </div>
       </div>
 
-      <p className="mt-5 text-center text-[#00B388]">
-        Congrats! You're saving {formatCurrency(totals.savings)}
+      <p className="mt-2 text-center text-[18px] text-[#00B388]">
+        Congrats! You're saving {formatCurrency(totals.savings)} on your security bundle!
       </p>
     </div>
   );

@@ -5,12 +5,13 @@ import ReviewCheckout from "./ReviewCheckout";
 import useBundleStore from "../../store/bundleStore";
 import { getReviewData, getBundleTotals } from "../../store/selectors";
 import { useMemo } from "react";
+import ReviewGuarantee from "./ReviewGuarantee";
 
 function ReviewPanel() {
   const cart = useBundleStore((state) => state.cart);
 
   const reviewData = useMemo(() => getReviewData({ cart }), [cart]);
-  console.log(reviewData)
+  console.log(reviewData);
 
   const totals = useMemo(() => getBundleTotals(reviewData), [reviewData]);
   return (
@@ -40,7 +41,9 @@ function ReviewPanel() {
 
         {/* Right */}
 
-        <div className="flex flex-col">
+        <div className="space-y-4">
+          <ReviewGuarantee />
+
           <ReviewPricing totals={totals} />
 
           <ReviewCheckout />
