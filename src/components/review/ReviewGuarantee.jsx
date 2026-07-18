@@ -1,6 +1,13 @@
+/**
+ * ReviewGuarantee
+ *
+ * Desktop/Tablet: shown as a standalone block above pricing.
+ * Mobile: hidden here — the guarantee badge is rendered inline
+ *         inside ReviewPricing for mobile layout.
+ */
 function ReviewGuarantee() {
   return (
-    <div className="mb-8">
+    <div className="hidden md:block mb-8">
       <div className="flex items-start gap-6">
         <img
           src="/images/products/guarantee_badge.png"

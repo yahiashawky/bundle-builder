@@ -6,20 +6,12 @@ function ProductPrice({
   variant = "card",
   suffix = "",
 }) {
-  const isReview = variant === "review";
-  console.log({
-    price,
-    compareAtPrice,
-  });
-
   const isFree = price === 0;
 
+  const isReview = variant === "review";
+
   return (
-    <div
-      className={`flex items-center gap-2 ${
-        isReview ? "justify-end" : "justify-end"
-      }`}
-    >
+    <div className="flex items-center gap-2 justify-end">
       {compareAtPrice && (
         <span
           className={`line-through ${

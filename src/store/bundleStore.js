@@ -57,7 +57,6 @@ const useBundleStore = create((set, get) => ({
     })),
 
   increment: (productId, variantId) => {
-    console.log(productId, variantId);
 
     set((state) => ({
       cart: {

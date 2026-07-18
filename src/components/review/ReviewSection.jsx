@@ -1,10 +1,24 @@
 import ReviewItem from "./ReviewItem";
 
-function ReviewSection({ title, items = [] }) {
+/**
+ * ReviewSection renders a titled group of review items.
+ *
+ * `mobileTitle` — optional override for the section label shown on mobile.
+ * On desktop the standard `title` is always used.
+ */
+function ReviewSection({ title, mobileTitle, items = [] }) {
   return (
     <section className="border-t border-[#D0D5DD] pt-3">
       <p className="mb-4 text-[11px] uppercase tracking-[1.5px] text-[#98A2B3]">
-        {title}
+        {/* Show mobileTitle on mobile, title on larger screens */}
+        {mobileTitle ? (
+          <>
+            <span className="md:hidden">{mobileTitle}</span>
+            <span className="hidden md:inline">{title}</span>
+          </>
+        ) : (
+          title
+        )}
       </p>
 
       <div className="space-y-4">

@@ -11,21 +11,29 @@ function ReviewPanel() {
   const cart = useBundleStore((state) => state.cart);
 
   const reviewData = useMemo(() => getReviewData({ cart }), [cart]);
-  console.log(reviewData);
-
   const totals = useMemo(() => getBundleTotals(reviewData), [reviewData]);
+
   return (
     <section
       className="
         mt-6
         rounded-[10px]
         bg-[#EDF4FF]
-        px-8
-        py-8
+        px-4
+        py-6
+        md:px-6
+        md:py-8
+        xl:px-8
+        xl:py-8
       "
     >
-      <div className="grid grid-cols-[1fr_520px] gap-10">
-        {/* Left */}
+      {/*
+        Layout:
+          Mobile  (≤767px)  : single column, all content stacked
+          Desktop (≥768px)  : two columns — sections left, sidebar right
+      */}
+      <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] md:gap-10 xl:grid-cols-[1fr_520px]">
+        {/* Left column — review sections */}
         <div className="space-y-6">
           <ReviewHeader />
 
@@ -35,13 +43,19 @@ function ReviewPanel() {
 
           <ReviewSection title="ACCESSORIES" items={reviewData.accessories} />
 
-          <ReviewSection title="PLAN" items={reviewData.plans} />
+          {/* "PLAN" on desktop, "HOME MONITORING PLAN" on mobile */}
+          <ReviewSection
+            title="PLAN"
+            mobileTitle="HOME MONITORING PLAN"
+            items={reviewData.plans}
+          />
+
           <ReviewSection title="SHIPPING" items={reviewData.shipping} />
         </div>
 
-        {/* Right */}
-
-        <div className="space-y-4">
+        {/* Right column — guarantee, pricing, checkout */}
+        <div className="mt-8 md:mt-0 space-y-4">
+          {/* Guarantee block — hidden on mobile (badge is in ReviewPricing on mobile) */}
           <ReviewGuarantee />
 
           <ReviewPricing totals={totals} />

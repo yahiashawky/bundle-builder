@@ -1,3 +1,4 @@
+import { memo, useCallback } from "react";
 import useBundleStore from "../../store/bundleStore";
 import { getVariantQuantity } from "../../store/selectors";
 
@@ -12,6 +13,7 @@ function ProductCard({ product }) {
   const increment = useBundleStore((state) => state.increment);
   const decrement = useBundleStore((state) => state.decrement);
   const selectVariant = useBundleStore((state) => state.selectVariant);
+  const toggleProduct = useBundleStore((state) => state.toggleProduct);
 
   const selectedVariant = useBundleStore(
     (state) =>
@@ -26,18 +28,36 @@ function ProductCard({ product }) {
 
   const isSelected = useBundleStore((state) => {
     const item = state.cart[product.id];
-
     if (!item) return false;
-
-    return Object.values(item.variants || {}).some((quantity) => quantity > 0);
+    return Object.values(item.variants || {}).some((qty) => qty > 0);
   });
-  const toggleProduct = useBundleStore((state) => state.toggleProduct);
+
   const showStepper = product.category !== "plans";
+
+  const handleToggle = useCallback(
+    () => toggleProduct(product.id),
+    [toggleProduct, product.id],
+  );
+
+  const handleIncrement = useCallback(
+    () => increment(product.id, selectedVariant),
+    [increment, product.id, selectedVariant],
+  );
+
+  const handleDecrement = useCallback(
+    () => decrement(product.id, selectedVariant),
+    [decrement, product.id, selectedVariant],
+  );
+
+  const handleSelectVariant = useCallback(
+    (variantId) => selectVariant(product.id, variantId),
+    [selectVariant, product.id],
+  );
 
   return (
     <article
-      className={`${!showStepper ? "cursor-pointer" : ""} w-[224.6px] h-[331.1px] rounded-[10px]  ${isSelected ? "border-2 border-[#5B4CF0]" : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all `}
-      onClick={!showStepper ? () => toggleProduct(product.id) : undefined}
+      className={`${!showStepper ? "cursor-pointer" : ""} w-full min-h-[260px] rounded-[10px] border ${isSelected ? "border-2 border-[#5B4CF0]" : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all`}
+      onClick={!showStepper ? handleToggle : undefined}
     >
       {/* Badge */}
       <ProductBadge badge={product.badge} />
@@ -57,7 +77,7 @@ function ProductCard({ product }) {
         <VariantSelector
           variants={product.variants}
           selectedVariant={selectedVariant}
-          onSelectVariant={(variantId) => selectVariant(product.id, variantId)}
+          onSelectVariant={handleSelectVariant}
         />
       )}
 
@@ -66,8 +86,8 @@ function ProductCard({ product }) {
         {showStepper && (
           <QuantityStepper
             value={quantity}
-            onIncrement={() => increment(product.id, selectedVariant)}
-            onDecrement={() => decrement(product.id, selectedVariant)}
+            onIncrement={handleIncrement}
+            onDecrement={handleDecrement}
           />
         )}
 
@@ -81,4 +101,4 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductCard;
+export default memo(ProductCard);

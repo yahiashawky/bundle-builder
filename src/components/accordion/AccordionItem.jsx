@@ -1,14 +1,16 @@
+import { useCallback } from "react";
 import AccordionHeader from "./AccordionHeader";
 import AccordionContent from "./AccordionContent";
 
 function AccordionItem({ step, isOpen, setOpenStep }) {
+  const handleOpen = useCallback(
+    () => setOpenStep(step.id),
+    [setOpenStep, step.id],
+  );
+
   return (
     <div className="overflow-hidden rounded-xl border border-[#E4E7EC] bg-white">
-      <AccordionHeader
-        step={step}
-        isOpen={isOpen}
-        onClick={() => setOpenStep(step.id)}
-      />
+      <AccordionHeader step={step} isOpen={isOpen} onClick={handleOpen} />
 
       {isOpen && (
         <AccordionContent

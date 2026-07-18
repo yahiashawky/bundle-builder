@@ -4,7 +4,13 @@ import NextStepButton from "./NextStepButton";
 function AccordionContent({ products, step, setOpenStep }) {
   return (
     <div className="bg-[#EEF4FF] px-3.75 py-5">
-      <div className="grid grid-cols-5 gap-3.75">
+      {/*
+        Grid columns:
+          mobile  (≤767px)  : 1 col
+          tablet  (768–1023): 2 cols
+          desktop (≥1280px) : 5 cols
+      */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3.75">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
