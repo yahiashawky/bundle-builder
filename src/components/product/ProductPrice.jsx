@@ -7,6 +7,8 @@ function ProductPrice({ price, compareAtPrice, variant = "card" }) {
     compareAtPrice,
   });
 
+  const isFree = price === 0;
+
   return (
     <div
       className={`flex items-center gap-2 ${
@@ -30,7 +32,7 @@ function ProductPrice({ price, compareAtPrice, variant = "card" }) {
           isReview ? "text-[16px] text-[#6941C6]" : "text-[16px] text-[#5B4CF0]"
         }`}
       >
-        {formatCurrency(price)}
+        {isFree ? "FREE" : formatCurrency(price)}
       </span>
     </div>
   );
