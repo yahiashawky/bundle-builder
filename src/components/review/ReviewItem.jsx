@@ -19,9 +19,15 @@ function ReviewItem({ item }) {
         />
 
         <div className="space-y-1">
-          <h4 className="text-[16px] font-semibold text-[#101828]">
-            {item.title}
-          </h4>
+          {item.title === "Cam Unlimited" ? (
+            <h4 className="text-[16px] font-semibold">
+              Cam <span className="text-[#4E2FD2]">Unlimited</span>
+            </h4>
+          ) : (
+            <h4 className="text-[16px] font-semibold text-[#101828]">
+              {item.title}
+            </h4>
+          )}
 
           {item.variant && (
             <p className="text-[14px] text-[#667085]">{item.variant.label}</p>
@@ -44,6 +50,7 @@ function ReviewItem({ item }) {
           variant="review"
           price={item.total}
           compareAtPrice={item.totalCompare}
+          suffix={item.category === "plans" ? "/mo" : ""}
         />
       </div>
     </div>

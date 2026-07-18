@@ -1,9 +1,15 @@
 function ProductInfo({ title, description, learnMore }) {
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="text-[16px] font-semibold leading-none tracking-[0.6px] text-[#101828]">
-        {title}
-      </h3>
+      {title === "Cam Unlimited" ? (
+        <h4 className="text-[16px] font-semibold">
+          Cam <span className="text-[#4E2FD2]">Unlimited</span>
+        </h4>
+      ) : (
+        <h3 className="text-[16px] font-semibold leading-none tracking-[0.6px] text-[#101828]">
+          {title}
+        </h3>
+      )}
 
       <p className="text-[14px] leading-[130%] tracking-[0.6px] text-[#667085]">
         {description}
