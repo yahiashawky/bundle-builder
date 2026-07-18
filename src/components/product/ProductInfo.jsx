@@ -11,7 +11,7 @@ function ProductInfo({ title, description, learnMore }) {
         </h3>
       )}
 
-      <p className="text-[14px] leading-[130%] tracking-[0.6px] text-[#667085]">
+      <p className="text-[12px] text-[#667085] tracking-[0.6px] leading-[130%] font-normal">
         {description}
       </p>
 

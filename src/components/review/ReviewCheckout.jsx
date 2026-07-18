@@ -11,7 +11,12 @@ function ReviewCheckout() {
 
   return (
     <>
-      <button className="h-12 w-full rounded-md bg-[#5B4CF0] font-semibold text-white">
+      <button
+        className="h-12 w-full rounded-md bg-[#5B4CF0] font-semibold text-white"
+        onClick={() =>
+          toast.success("Checkout is not implemented in this prototype.")
+        }
+      >
         Checkout
       </button>
 

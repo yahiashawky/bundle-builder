@@ -9,13 +9,13 @@ function ReviewItem({ item }) {
   const showStepper = item.category !== "plans" && item.category !== "shipping";
 
   return (
-    <div className="flex items-center justify-between py-4">
+    <div className="flex items-center justify-between py-2">
       {/* Left */}
       <div className="flex items-center gap-4">
         <img
           src={item.image}
           alt={item.title}
-          className="h-14 w-14 rounded-md border border-[#E4E7EC] bg-white object-contain p-1"
+          className="h-10.25 w-10.25 rounded-md border border-[#E4E7EC] bg-white object-contain p-1"
         />
 
         <div className="space-y-1">
@@ -24,7 +24,7 @@ function ReviewItem({ item }) {
               Cam <span className="text-[#4E2FD2]">Unlimited</span>
             </h4>
           ) : (
-            <h4 className="text-[16px] font-semibold text-[#101828]">
+            <h4 className="text-[18px] font-medium text-[#0B0D10] tracking-[0.5%] leading-4">
               {item.title}
             </h4>
           )}
