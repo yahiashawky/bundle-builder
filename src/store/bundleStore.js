@@ -59,10 +59,9 @@ const useBundleStore = create(
           },
         })),
 
-      increment: (productId, variantId) =>{
+      increment: (productId, variantId) => {
         console.log(productId, variantId);
-      
-        
+
         set((state) => ({
           cart: {
             ...state.cart,
@@ -76,7 +75,8 @@ const useBundleStore = create(
               },
             },
           },
-        }))},
+        }));
+      },
 
       decrement: (productId, variantId) =>
         set((state) => ({
@@ -95,6 +95,22 @@ const useBundleStore = create(
             },
           },
         })),
+      toggleProduct: (productId) =>
+        set((state) => {
+          const exists = (state.cart[productId]?.variants?.default || 0) > 0;
+
+          return {
+            cart: {
+              ...state.cart,
+
+              [productId]: {
+                variants: {
+                  default: exists ? 0 : 1,
+                },
+              },
+            },
+          };
+        }),
     }),
     {
       name: "bundle-builder",

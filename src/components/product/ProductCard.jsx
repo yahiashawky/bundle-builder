@@ -24,8 +24,6 @@ function ProductCard({ product }) {
     getVariantQuantity(state, product.id, selectedVariant),
   );
 
-  const showStepper = product.category !== "plans";
-
   const isSelected = useBundleStore((state) => {
     const item = state.cart[product.id];
 
@@ -33,10 +31,13 @@ function ProductCard({ product }) {
 
     return Object.values(item.variants || {}).some((quantity) => quantity > 0);
   });
+  const toggleProduct = useBundleStore((state) => state.toggleProduct);
+  const showStepper = product.category !== "plans";
 
   return (
     <article
-      className={`w-[224.6px] h-[331.1px] rounded-[10px]  ${isSelected ? "border-2 border-[#5B4CF0]" : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all `}
+      className={`${!showStepper ? "cursor-pointer" : ""} w-[224.6px] h-[331.1px] rounded-[10px]  ${isSelected ? "border-2 border-[#5B4CF0]" : "border-[#D9D9D9]"} bg-white p-2.75 flex flex-col gap-3.25 transition-all `}
+      onClick={!showStepper ? () => toggleProduct(product.id) : undefined}
     >
       {/* Badge */}
       <ProductBadge badge={product.badge} />
