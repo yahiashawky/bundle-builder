@@ -2,6 +2,10 @@ import { formatCurrency } from "../../utils/helper";
 
 function ProductPrice({ price, compareAtPrice, variant = "card" }) {
   const isReview = variant === "review";
+  console.log({
+    price,
+    compareAtPrice,
+  });
 
   return (
     <div

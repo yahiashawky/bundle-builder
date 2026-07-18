@@ -6,6 +6,7 @@ function ReviewItem({ item }) {
   const increment = useBundleStore((state) => state.increment);
   const decrement = useBundleStore((state) => state.decrement);
   const variantId = item.variant?.id ?? "default";
+  const showStepper = item.category !== "plans" && item.category !== "shipping";
 
   return (
     <div className="flex items-center justify-between py-4">
@@ -30,12 +31,14 @@ function ReviewItem({ item }) {
 
       {/* Right */}
       <div className="flex items-center gap-6">
-        <QuantityStepper
-          value={item.quantity}
-          size="compact"
-          onIncrement={() => increment(item.productId, variantId)}
-          onDecrement={() => decrement(item.productId, variantId)}
-        />
+        {showStepper && (
+          <QuantityStepper
+            value={item.quantity}
+            size="compact"
+            onIncrement={() => increment(item.productId, variantId)}
+            onDecrement={() => decrement(item.productId, variantId)}
+          />
+        )}
 
         <ProductPrice
           variant="review"

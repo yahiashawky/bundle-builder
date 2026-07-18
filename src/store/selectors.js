@@ -38,11 +38,6 @@ export function getSelectedItems(state, products) {
       const quantity = item.variants?.default || 0;
 
       if (quantity === 0) return [];
-      console.log({
-        product: product.title,
-        quantity,
-        item,
-      });
 
       return [
         {
@@ -51,11 +46,15 @@ export function getSelectedItems(state, products) {
           title: product.title,
           image: product.image,
           variant: null,
+          category: product.category,
           quantity,
           price: product.price,
           compareAtPrice: product.compareAtPrice,
           total: quantity * product.price,
-          totalCompare: quantity * (product.compareAtPrice || 0),
+          totalCompare:
+            product.compareAtPrice != null
+              ? product.compareAtPrice * quantity
+              : null,
         },
       ];
     }
@@ -71,11 +70,15 @@ export function getSelectedItems(state, products) {
           title: product.title,
           image: product.image,
           variant,
+          category: product.category,
           quantity,
           price: product.price,
           compareAtPrice: product.compareAtPrice,
           total: quantity * product.price,
-          totalCompare: quantity * (product.compareAtPrice || 0),
+          totalCompare:
+            product.compareAtPrice != null
+              ? product.compareAtPrice * quantity
+              : null,
         };
       });
   });

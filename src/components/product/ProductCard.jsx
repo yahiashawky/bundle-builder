@@ -24,6 +24,8 @@ function ProductCard({ product }) {
     getVariantQuantity(state, product.id, selectedVariant),
   );
 
+  const showStepper = product.category !== "plans";
+
   const isSelected = useBundleStore((state) => {
     const item = state.cart[product.id];
 
@@ -60,11 +62,13 @@ function ProductCard({ product }) {
 
       {/* Bottom */}
       <div className="mt-auto flex h-7 items-center justify-between">
-        <QuantityStepper
-          value={quantity}
-          onIncrement={() => increment(product.id, selectedVariant)}
-          onDecrement={() => decrement(product.id, selectedVariant)}
-        />
+        {showStepper && (
+          <QuantityStepper
+            value={quantity}
+            onIncrement={() => increment(product.id, selectedVariant)}
+            onDecrement={() => decrement(product.id, selectedVariant)}
+          />
+        )}
 
         <ProductPrice
           price={product.price}
