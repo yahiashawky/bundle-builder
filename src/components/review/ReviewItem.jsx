@@ -35,7 +35,7 @@ function ReviewItem({ item }) {
               Cam <span className="text-[#4E2FD2]">Unlimited</span>
             </h4>
           ) : (
-            <h4 className="text-[14px] md:text-[18px] font-medium text-[#0B0D10] tracking-[0.005em] leading-4">
+            <h4 className="text-[14px] md:text-[18px] font-medium text-[#0B0D10] tracking-[0.005em] leading-4 lg:text-[16px] xl:text[18px] lg:font-normal xl:font-medium">
               {item.title}
             </h4>
           )}
@@ -49,7 +49,7 @@ function ReviewItem({ item }) {
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-3 md:gap-6 shrink-0">
+      <div className="flex items-center gap-3 md:gap-6 shrink-0 lg:gap-0.5 xl:gap-3">
         {showStepper && (
           <QuantityStepper
             value={item.quantity}

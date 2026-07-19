@@ -32,7 +32,7 @@ function ReviewPanel() {
           Mobile  (≤767px)  : single column, all content stacked
           Desktop (≥768px)  : two columns — sections left, sidebar right
       */}
-      <div className="flex flex-col md:grid md:grid-cols-[1fr_auto] md:gap-10 xl:grid-cols-[1fr_520px]">
+      <div className="flex flex-col xl:grid xl:grid-cols-[1fr_520px] xl:gap-10">
         {/* Left column — review sections */}
         <div className="space-y-6">
           <ReviewHeader />

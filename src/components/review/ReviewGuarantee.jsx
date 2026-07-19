@@ -12,10 +12,10 @@ function ReviewGuarantee() {
         <img
           src="/images/products/guarantee_badge.png"
           alt="Guarantee"
-          className="h-[131px] w-[131px]"
+          className="h-[131px] w-[131px] lg:w-[78px] lg:h-[78px] xl:h-[131px] xl:w-[131px]           "
         />
 
-        <div className="pt-2">
+        <div className="pt-2 lg:hidden xl:block">
           <h3 className="text-[18px] font-semibold text-[#101828]">
             30-day hassle-free returns
           </h3>

@@ -11,7 +11,7 @@ function ProductPrice({
   const isReview = variant === "review";
 
   return (
-    <div className="flex items-center gap-2 justify-end">
+    <div className="flex items-center gap-2 justify-end lg:flex-col lg:gap-0 xl:flex-row xl:gap-2">
       {compareAtPrice && (
         <span
           className={`line-through ${
